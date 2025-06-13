@@ -1,0 +1,9 @@
+1. The platter will only contain cheeses of the five listed cheese families below:
+- Hard and semi-hard cheese
+- White mold cheese
+- Red and white rind cheese
+- Goat and sheep cheese
+- Blue cheese
+2. There can only be one cheese of every cheese family on the platter.
+3. It should contain at least one mild cheese, one semi-strong cheese and one strong cheese but should always have a total of five cheeses.
+4. All suggested cheeses have to be produced in the Netherlands by local producers.

@@ -1,13 +1,13 @@
-package com.example.fantasticBeastsStore;
+package com.example.cheesePlatterAgent;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FantasticBeastsStoreApplication {
+public class CheesePlatterAgentApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FantasticBeastsStoreApplication.class, args);
+		SpringApplication.run(CheesePlatterAgentApplication.class, args);
 	}
 
 }
