@@ -92,4 +92,12 @@ class CheesePlatterAgentApplicationTests {
 				.hasMessage("Error while trying to remove cheese from cheese platter, cheese with name notExisting not found");
 	}
 
+	@Test
+	void testUnsafeQuery() {
+		var customers = cheesePlatterService.findCustomersUnsafe("notExisting or 1=1");
+		assertThat(customers.size()).isEqualTo(2);
+
+		var firstname = customers.get(0).getFirstName();
+		assertThat(firstname).isNotNull();
+	}
 }
