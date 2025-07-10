@@ -73,12 +73,13 @@ public class CheesePlatterService {
         return customer.getFirstName() + " " + customer.getLastName();
     }
 
-    public List<Customer> findCustomersUnsafe(String userName) {
-        String sql = "SELECT * FROM customer WHERE user_name = '" + userName + "'";
+    public String findCustomerFirstNameUnsafe(String userName, String param2, String param3, String param4, String param5, String param6) {
+        String sql = "SELECT * FROM customer WHERE user_name = " + userName + "";
         Query query = entityManager.createNativeQuery(sql, Customer.class);
 
         try {
-            return (List<Customer>) query.getResultList();
+            var customers = (List<Customer>) query.getResultList();
+            return customers.get(0).getFirstName();
         } catch (NoResultException e) {
             return null;
         }
