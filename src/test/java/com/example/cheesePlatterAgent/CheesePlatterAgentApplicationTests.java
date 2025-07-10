@@ -94,10 +94,7 @@ class CheesePlatterAgentApplicationTests {
 
 	@Test
 	void testUnsafeQuery() {
-		var customers = cheesePlatterService.findCustomersUnsafe("notExisting or 1=1");
-		assertThat(customers.size()).isEqualTo(2);
-
-		var firstname = customers.get(0).getFirstName();
-		assertThat(firstname).isNotNull();
+		var firstName = cheesePlatterService.findCustomerFirstNameUnsafe("'notExisting' OR 1=1", null, null, null, null, null);
+		assertThat(firstName).isNotNull();
 	}
 }
