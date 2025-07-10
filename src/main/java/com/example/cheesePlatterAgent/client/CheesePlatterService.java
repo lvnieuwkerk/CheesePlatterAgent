@@ -8,6 +8,10 @@ import com.example.cheesePlatterAgent.data.Customer;
 import com.example.cheesePlatterAgent.exceptions.CustomerNotFoundException;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.hilla.BrowserCallable;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import lombok.Getter;
 
 import java.util.List;
@@ -16,6 +20,10 @@ import java.util.List;
 @AnonymousAllowed
 public class CheesePlatterService {
     private final CheesePlatterRepository cheesePlatterRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
     @Getter
     private Long currentUserId;
 
@@ -62,6 +70,18 @@ public class CheesePlatterService {
         if (userId == null) return null;
         Customer customer = cheesePlatterRepository.findCustomerById(userId).orElseThrow(() -> new CustomerNotFoundException("Customer not found"));
         return customer.getFirstName() + " " + customer.getLastName();
+    }
+
+    public Integer findLengthCustomerFirstNameUnsafe(String userName, String param2, String param3, String param4, String param5, String param6) {
+        String sql = "SELECT * FROM customer WHERE user_name = '" + userName + "' ORDER BY id DESC";
+        Query query = entityManager.createNativeQuery(sql, Customer.class);
+
+        try {
+            var customers = (List<Customer>) query.getResultList();
+            return customers.get(0).getFirstName().length();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     private void initDemoData() {
